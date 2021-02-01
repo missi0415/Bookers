@@ -7,13 +7,18 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+
+
   def create
       # １. データを新規登録するためのインスタンス作成
     book = Book.new(book_params)#このブックはコントローラ内でしかつかえない
     # ２. データをデータベースに保存するためのsaveメソッド実行
-    book.save
-    # ３. トップ画面へリダイレクトから詳細画面へリダイレクトに変更
-    redirect_to books_path(book.id)
+    if book.save
+    # ３. 詳細画面へリダイレクトに変更
+      redirect_to book_path(book.id)
+    else
+      render :index#ここがエラーで
+    end
   end
 
 

@@ -1,23 +1,23 @@
-<h1>変更</h1>
 <h1>Books</h1>
 <!--タイトルとボディよこがき-->
-    <strong>Title</strong>
-    <strong>Body</strong>
-<!--each do処理-->
-<% @books.each do |book| %>
-  <p><%= book.Title %></p>
-  <p><%= book.Body %><p>
 
-    <!--<%= link_to "Show", "/books/#{book.id}" %>-->
-    <!--下の行はただの書き換え-->
+<div>Title</div>
+<div>Body</div>
+<div class="table">
+  <!--each do処理-->
+    <% @books.each do |book| %>
+  <div><%= book.Title %></div>
+  <div><%= book.Body %></div>
   <!--Showボタン-->
-  <%= link_to "Show", book_path(book.id) %>
+  <div><%= link_to "Show", book_path(book.id) %>
   <!--ここのbookという変数はeach doの中の変数-->
   <!--Editボタン-->
   <%= link_to "Edit", edit_book_path(book.id) %>
   <!--Destroyボタン-->
   <%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+  </div>
 <% end %>
+</div>
 
 <h2>New book</h2>
 <!--newのフォームウィズ画面-->
