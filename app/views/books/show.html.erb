@@ -1,0 +1,13 @@
+<!--showの画面-->
+<p>
+  <strong>Title:</strong>
+  <%= @book.Title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @book.Body %>
+</p>
+<!--Editボタン-->
+<%= link_to "Edit", edit_book_path(@book.id) %>
+<a class="back" href="/books">Back</a>

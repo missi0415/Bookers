@@ -1,0 +1,31 @@
+<h1>Books</h1>
+<!--タイトルとボディよこがき-->
+    <strong>Title</strong>
+    <strong>Body</strong>
+<!--each do処理-->
+<% @books.each do |book| %>
+  <p><%= book.Title %></p>
+  <p><%= book.B %><p>
+
+    <!--<%= link_to "Show", "/books/#{book.id}" %>-->
+    <!--下の行はただの書き換え-->
+  <!--Showボタン-->
+  <%= link_to "Show", book_path(book.id) %>
+  <!--ここのbookという変数はeach doの中の変数-->
+  <!--Editボタン-->
+  <%= link_to "Edit", edit_book_path(book.id) %>
+  <!--Destroyボタン-->
+  <%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+<% end %>
+
+<h2>New book</h2>
+<!--newのフォームウィズ画面-->
+<%= form_with model:@book, local:true do |f| %>
+<h4>Title</h4>
+<%= f.text_field :Title %>
+
+<h4>Body<h4>
+<%= f.text_field :Body %>
+
+<%= f.submit 'Create Book' %>
+<% end %>
