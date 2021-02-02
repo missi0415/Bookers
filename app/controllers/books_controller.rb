@@ -49,15 +49,17 @@ class BooksController < ApplicationController
 
 
   def destroy
-    book = Book.find(params[:id])  # データ（レコード）を1件取得
-    book.destroy  # データ（レコード）を削除
-    redirect_to books_path  # 投稿一覧画面へリダイレクト
+    @book = Book.find(params[:id])  # データ（レコード）を1件取得
+    @book.destroy  # データ（レコード）を削除
+    redirect_to books_path  # t投稿一覧画面へリダイレクト
+    flash[:destroy] = "Book was successfully destroyed."
   end
 
   private
   # ストロングパラメータ
   def book_params
     params.require(:book).permit(:title, :body)
+
 
     #params.require(:list).permit(:title, :body)
     #これがないとモデルを更新書き換えできない
