@@ -1,32 +1,46 @@
+
 <h1>Books</h1>
 <!--タイトルとボディよこがき-->
 
-<div>Title</div>
-<div>Body</div>
-<div class="table">
+<div class="book">
+  <table>
+    <thead>
+      <tr>
+        <th >Title</th>
+        <th >Body</th>
+      </tr>
+    </thead>
   <!--each do処理-->
     <% @books.each do |book| %>
-  <div><%= book.Title %></div>
-  <div><%= book.Body %></div>
+
+
+    <tbody>
+    <tr>
+      <td ><%= book.title %></td>
+      <td ><%= book.body %></td>
   <!--Showボタン-->
-  <div><%= link_to "Show", book_path(book.id) %>
+      <td ><%= link_to "Show", book_path(book.id) %></td>
   <!--ここのbookという変数はeach doの中の変数-->
   <!--Editボタン-->
-  <%= link_to "Edit", edit_book_path(book.id) %>
+      <td><%= link_to "Edit", edit_book_path(book.id) %></td>
   <!--Destroyボタン-->
-  <%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
-  </div>
-<% end %>
-</div>
+      <td><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+    <% end %>
+    </tr>
+    </tbody>
+  </table>
+
 
 <h2>New book</h2>
 <!--newのフォームウィズ画面-->
+<%= render 'sherd/error_form' %>
 <%= form_with model:@book, local:true do |f| %>
-<h4>Title</h4>
-<%= f.text_field :Title %>
 
-<h4>Body<h4>
-<%= f.text_field :Body %>
+<p><%= f.label :Title %></p>
+<p><%= f.text_field :title %></p>
+<p><%= f.label :Body %></p>
+<P><%= f.text_area :body %></p>
 
-<%= f.submit 'Create Book' %>
+<P><%= f.submit 'Create Book' %></P>
 <% end %>
+</div>

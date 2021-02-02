@@ -1,14 +1,12 @@
-<!--showの画面-->
-新規投稿後のページ
-<p>
-  <strong>Title:</strong>
-  <%= @book.Title %>
-</p>
+<p><%= flash[:complete] %></p>
+<p><%= flash[:update] %></p>
 
+  <strong>Title:</strong>
+  <%= @book.title %>
 <p>
   <strong>Body:</strong>
-  <%= @book.Body %>
+  <%= @book.body %>
 </p>
 <!--Editボタン-->
-<%= link_to "Edit", edit_book_path(@book.id) %>
+<%= link_to "Edit", edit_book_path(@book.id) %> |
 <a class="back" href="/books">Back</a>

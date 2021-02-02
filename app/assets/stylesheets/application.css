@@ -13,21 +13,24 @@
  *= require_tree .
  *= require_self
  */
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+ * body {
+    background-color: #fff;
+    color: #333;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 33px;
 }
 
-h1{
-  margin: 30px;
-
+.error {
+  border: 1px solid #000000;
+  margin: 0
 }
 
-.top {
-  margin: 15px 35px 15px 35px;
+.error-count {
+  border: 1px solid #000000;
 }
-.table {
-  display: flex;
-  
+
+.error-message {
+  padding: 20px
 }

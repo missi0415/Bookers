@@ -11,13 +11,16 @@ class BooksController < ApplicationController
 
   def create
       # １. データを新規登録するためのインスタンス作成
-    book = Book.new(book_params)#このブックはコントローラ内でしかつかえない
+    @book = Book.new(book_params)#このブックはコントローラ内でしかつかえない
+
     # ２. データをデータベースに保存するためのsaveメソッド実行
-    if book.save
+    if @book.save
+      flash[:complete] = "Book was successfully created."
     # ３. 詳細画面へリダイレクトに変更
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book.id)#コントローラを通す
     else
-      render :index#ここがエラーで
+      @books = Book.all
+      render :index#コントローラを通さないでviewを出す
     end
   end
 
@@ -33,9 +36,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
+      flash[:update] = "Book was successfully updated."
+
+    else
+      render :edit
+    end
   end
 
 
@@ -49,7 +57,7 @@ class BooksController < ApplicationController
   private
   # ストロングパラメータ
   def book_params
-    params.require(:book).permit(:Title, :Body)
+    params.require(:book).permit(:title, :body)
 
     #params.require(:list).permit(:title, :body)
     #これがないとモデルを更新書き換えできない
